@@ -8,8 +8,10 @@ from pydantic import BaseModel, EmailStr, Field, field_validator
 # Request schemas (inbound)
 # ------------------------------------------------------------------
 
+
 class UserCreate(BaseModel):
     """Body for POST /auth/register"""
+
     username: str = Field(..., min_length=3, max_length=30)
     email: EmailStr
     password: str = Field(..., min_length=8, max_length=100)
@@ -18,7 +20,9 @@ class UserCreate(BaseModel):
     @classmethod
     def username_alphanumeric(cls, v: str) -> str:
         if not v.replace("_", "").replace("-", "").isalnum():
-            raise ValueError("Username may only contain letters, numbers, hyphens, and underscores")
+            raise ValueError(
+                "Username may only contain letters, numbers, hyphens, and underscores"
+            )
         return v.lower()
 
     @field_validator("email")
@@ -29,6 +33,7 @@ class UserCreate(BaseModel):
 
 class UserLogin(BaseModel):
     """Body for POST /auth/login"""
+
     email: EmailStr
     password: str
 
@@ -37,8 +42,10 @@ class UserLogin(BaseModel):
 # Response schemas (outbound)
 # ------------------------------------------------------------------
 
+
 class UserOut(BaseModel):
     """Safe public representation of a user — no password_hash."""
+
     id: str
     username: str
     email: str
@@ -48,12 +55,14 @@ class UserOut(BaseModel):
 
 class Token(BaseModel):
     """Returned by POST /auth/login"""
+
     access_token: str
     token_type: str = "bearer"
 
 
 class RegisterOut(BaseModel):
     """Returned by POST /auth/register"""
+
     id: str
     username: str
     message: str = "Account created successfully"

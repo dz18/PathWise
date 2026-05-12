@@ -1,11 +1,8 @@
-from datetime import datetime, timezone
-
 from app.core.database import get_users_collection
 from app.repositories.base import BaseRepository
 
 
 class UserRepository(BaseRepository):
-
     def __init__(self):
         super().__init__(get_users_collection())
 
@@ -37,9 +34,7 @@ class UserRepository(BaseRepository):
     # Writes
     # ------------------------------------------------------------------
 
-    async def create_user(
-        self, username: str, email: str, password_hash: str
-    ) -> str:
+    async def create_user(self, username: str, email: str, password_hash: str) -> str:
         """
         Insert a new user document.
         Returns the new user's ID as a string.

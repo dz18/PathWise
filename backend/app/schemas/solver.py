@@ -7,8 +7,10 @@ from pydantic import BaseModel, Field
 # Request schemas (inbound)
 # ------------------------------------------------------------------
 
+
 class SolveRequest(BaseModel):
     """Body for POST /mazes/{id}/solve"""
+
     algorithm: Literal["bfs", "dijkstra", "astar"] = Field(
         ...,
         description="Pathfinding algorithm to use",
@@ -18,6 +20,7 @@ class SolveRequest(BaseModel):
 # ------------------------------------------------------------------
 # Response schemas (outbound)
 # ------------------------------------------------------------------
+
 
 class SolveResult(BaseModel):
     """
@@ -31,6 +34,7 @@ class SolveResult(BaseModel):
     time_ms        — server-side solve time in milliseconds
     algorithm      — which algorithm produced this result
     """
+
     algorithm: str
     path: list[list[int]]
     visited_order: list[list[int]]

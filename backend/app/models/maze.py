@@ -28,16 +28,16 @@ class MazeDocument(BaseModel):
     """
 
     id: Optional[str] = Field(default=None, alias="_id")
-    owner_id: str                           # references users._id
+    owner_id: str  # references users._id
     title: str
     description: Optional[str] = None
 
     # Grid data
-    grid: Grid                              # 2D array of cells
+    grid: Grid  # 2D array of cells
     rows: int
     cols: int
-    start: list[int]                        # [row, col]
-    end: list[int]                          # [row, col]
+    start: list[int]  # [row, col]
+    end: list[int]  # [row, col]
 
     # Community
     is_published: bool = False

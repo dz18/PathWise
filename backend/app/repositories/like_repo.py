@@ -1,11 +1,8 @@
-from datetime import datetime, timezone
-
 from app.core.database import get_likes_collection
 from app.repositories.base import BaseRepository
 
 
 class LikeRepository(BaseRepository):
-
     def __init__(self):
         super().__init__(get_likes_collection())
 

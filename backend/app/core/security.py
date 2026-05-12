@@ -61,7 +61,9 @@ def create_refresh_token(data: dict) -> str:
     Store this in an httpOnly cookie — never expose to JS.
     """
     payload = data.copy()
-    expire = datetime.now(timezone.utc) + timedelta(days=settings.REFRESH_TOKEN_EXPIRE_DAYS)
+    expire = datetime.now(timezone.utc) + timedelta(
+        days=settings.REFRESH_TOKEN_EXPIRE_DAYS
+    )
     payload.update({"exp": expire, "type": "refresh"})
     return jwt.encode(payload, settings.SECRET_KEY, algorithm=settings.ALGORITHM)
 
@@ -72,7 +74,9 @@ def decode_token(token: str) -> dict:
     Raises HTTPException 401 if the token is invalid or expired.
     """
     try:
-        payload = jwt.decode(token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM])
+        payload = jwt.decode(
+            token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM]
+        )
         return payload
     except JWTError:
         raise HTTPException(
@@ -85,6 +89,7 @@ def decode_token(token: str) -> dict:
 # ------------------------------------------------------------------
 # FastAPI dependency — inject into protected routes
 # ------------------------------------------------------------------
+
 
 async def get_current_user(token: str = Depends(oauth2_scheme)) -> dict:
     """

@@ -1,8 +1,5 @@
-from fastapi import HTTPException, status
-
 from app.repositories.maze_repo import MazeRepository
 from app.repositories.like_repo import LikeRepository
-from app.algorithms.bfs import BFSSolver
 
 
 class CommunityService:

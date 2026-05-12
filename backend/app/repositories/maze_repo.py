@@ -1,11 +1,8 @@
-from datetime import datetime, timezone
-
 from app.core.database import get_mazes_collection
 from app.repositories.base import BaseRepository
 
 
 class MazeRepository(BaseRepository):
-
     def __init__(self):
         super().__init__(get_mazes_collection())
 

@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [master, main]
+    branches: master
   pull_request:
-    branches: [master, main]
+    branches: master
 
 jobs:
   backend:
@@ -36,7 +36,7 @@ jobs:
       - name: Type check with mypy
         run: |
           pip install mypy
-          mypy app --ignore-missing-imports --exclude venv
+          mypy app --ignore-missing-imports --exclude "venv/"
 
   frontend:
     name: Frontend — Lint & Build

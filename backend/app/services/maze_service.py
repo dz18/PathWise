@@ -1,7 +1,3 @@
-from datetime import datetime, timezone
-
-from fastapi import HTTPException, status
-
 from app.repositories.maze_repo import MazeRepository
 
 
@@ -18,7 +14,9 @@ class MazeService:
     # Fetch
     # ------------------------------------------------------------------
 
-    async def get_maze(self, maze_id: str, requesting_user_id: str | None = None) -> dict:
+    async def get_maze(
+        self, maze_id: str, requesting_user_id: str | None = None
+    ) -> dict:
         """
         Fetch a maze by ID.
         - Published mazes are visible to anyone.
@@ -76,9 +74,7 @@ class MazeService:
     # Update
     # ------------------------------------------------------------------
 
-    async def update_maze(
-        self, maze_id: str, owner_id: str, update_data: dict
-    ) -> dict:
+    async def update_maze(self, maze_id: str, owner_id: str, update_data: dict) -> dict:
         """
         Update maze fields. Only the owner can update.
         Raises 403 if the requesting user is not the owner.

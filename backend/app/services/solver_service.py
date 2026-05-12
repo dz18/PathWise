@@ -1,7 +1,3 @@
-import time
-
-from fastapi import HTTPException, status
-
 from app.repositories.maze_repo import MazeRepository
 from app.algorithms.bfs import BFSSolver
 from app.algorithms.dijkstra import DijkstraSolver

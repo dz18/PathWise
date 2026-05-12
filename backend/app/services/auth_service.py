@@ -1,8 +1,3 @@
-from datetime import datetime, timezone
-
-from fastapi import HTTPException, status
-
-from app.core.security import hash_password, verify_password, create_access_token
 from app.repositories.user_repo import UserRepository
 
 
@@ -19,9 +14,7 @@ class AuthService:
     # Register
     # ------------------------------------------------------------------
 
-    async def register(
-        self, username: str, email: str, password: str
-    ) -> dict:
+    async def register(self, username: str, email: str, password: str) -> dict:
         """
         Register a new user.
         Raises 409 if email or username is already taken.

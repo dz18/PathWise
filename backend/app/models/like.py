@@ -14,8 +14,8 @@ class LikeDocument(BaseModel):
     """
 
     id: Optional[str] = Field(default=None, alias="_id")
-    user_id: str        # references users._id
-    maze_id: str        # references mazes._id
+    user_id: str  # references users._id
+    maze_id: str  # references mazes._id
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
     model_config = {

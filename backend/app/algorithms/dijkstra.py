@@ -1,6 +1,6 @@
 import heapq
 
-from app.algorithms.base import SolverBase, SolverResult, DIRECTIONS
+from app.algorithms.base import SolverBase, SolverResult
 
 
 # Default traversal cost per cell type.

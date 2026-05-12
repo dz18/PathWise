@@ -12,6 +12,7 @@ class SolverResult:
     visited_order — every cell examined during traversal, in order.
                     Used by the frontend to animate the search.
     """
+
     path: list[list[int]] = field(default_factory=list)
     visited_order: list[list[int]] = field(default_factory=list)
 
@@ -19,15 +20,15 @@ class SolverResult:
 # Wall index constants — matches the cell format [N, S, E, W]
 NORTH = 0
 SOUTH = 1
-EAST  = 2
-WEST  = 3
+EAST = 2
+WEST = 3
 
 # (row_delta, col_delta, wall_on_current_cell, wall_on_neighbour)
 DIRECTIONS = [
-    (-1,  0, NORTH, SOUTH),   # move north
-    ( 1,  0, SOUTH, NORTH),   # move south
-    ( 0,  1, EAST,  WEST),    # move east
-    ( 0, -1, WEST,  EAST),    # move west
+    (-1, 0, NORTH, SOUTH),  # move north
+    (1, 0, SOUTH, NORTH),  # move south
+    (0, 1, EAST, WEST),  # move east
+    (0, -1, WEST, EAST),  # move west
 ]
 
 
@@ -70,11 +71,11 @@ class SolverBase(ABC):
         return neighbours
 
     def reconstruct_path(
-        self, came_from: dict[tuple, tuple], end: tuple[int, int]
+        self, came_from: dict[tuple, tuple | None], end: tuple[int, int]
     ) -> list[list[int]]:
         """Walk the came_from map backwards to build the solution path."""
         path = []
-        current = end
+        current: tuple | None = end
         while current is not None:
             path.append(list(current))
             current = came_from.get(current)

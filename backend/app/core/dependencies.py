@@ -10,6 +10,7 @@ from app.repositories.user_repo import UserRepository
 # Database
 # ------------------------------------------------------------------
 
+
 async def get_database(
     db: AsyncIOMotorDatabase = Depends(get_db),
 ) -> AsyncIOMotorDatabase:
@@ -26,6 +27,7 @@ async def get_database(
 # ------------------------------------------------------------------
 # Auth — current user (required)
 # ------------------------------------------------------------------
+
 
 async def require_auth(
     current_user: dict = Depends(get_current_user),
@@ -45,6 +47,7 @@ async def require_auth(
 # ------------------------------------------------------------------
 # Auth — current user with full DB profile
 # ------------------------------------------------------------------
+
 
 async def require_auth_user(
     current_user: dict = Depends(get_current_user),
@@ -75,6 +78,7 @@ async def require_auth_user(
 # Auth — optional (public routes that behave differently when logged in)
 # ------------------------------------------------------------------
 
+
 async def optional_auth(
     current_user: dict | None = Depends(get_current_user),
 ) -> dict | None:
@@ -98,6 +102,7 @@ async def optional_auth(
 # ------------------------------------------------------------------
 # Pagination
 # ------------------------------------------------------------------
+
 
 async def pagination_params(
     page: int = 1,
