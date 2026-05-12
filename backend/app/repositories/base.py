@@ -17,6 +17,7 @@ class BaseRepository:
     # ------------------------------------------------------------------
     # Helpers
     # ------------------------------------------------------------------
+    
     @staticmethod
     def to_object_id(id: str) -> ObjectId:
         """ Convert a string ID to ObjectId, raising ValueError if invalid """
@@ -100,7 +101,7 @@ class BaseRepository:
         """Count documents matching a filter."""
         return await self.collection.count_documents(filter)
  
- 
+
     async def exists(self, filter: dict) -> bool:
         """Return True if at least one document matches the filter."""
         doc = await self.collection.find_one(filter, {"_id": 1})
